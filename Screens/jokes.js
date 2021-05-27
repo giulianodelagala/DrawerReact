@@ -27,15 +27,16 @@ export default function JokesScreen() {
                 </Text>
             </View>
             <View style={s.bottom}>
-                <View style={ {color:'black', backgroundColor: 'orange'}}>
-                <Button
-                    onPress = {() => {
+                <TouchableOpacity
+                    onPress= { () => {
                         setNew(false);
                         fetchJoke();
                     }}
-                    title={"One more Joke!"}
-                />
-            </View>
+                    >
+                    <Text style={s.bottomButton}>
+                        One more Joke!
+                    </Text>
+                </TouchableOpacity>
             </View>
         </View>
           

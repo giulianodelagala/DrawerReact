@@ -47,7 +47,7 @@ function Menu(props){
                     <View style={s.userContainer}>
                         <Image
                             style= {s.userImagen}
-                            source={ require('./logo-brainapps.png')}
+                            source={ require('./logo.png')}
                         />
                         <View>
                             <Image

@@ -7,7 +7,6 @@ import s from './style_screens'
 
 const ExpandableComponent = ({item}) => {
     const [layoutHeight, setLayoutHeight] = React.useState(0);
-
     return (
         <View>
         <TouchableOpacity style={s.item}>
@@ -36,9 +35,9 @@ export default function WiFiScreen() {
       }  
     }
   
-    // React.useEffect(() => {
-    //   requestLocationPermission();
-    // }, []);
+    React.useEffect(() => {
+      initWifi();
+    }, []);
    
     return (
       <SafeAreaView style={{flex: 1}}>
@@ -47,27 +46,32 @@ export default function WiFiScreen() {
                 <Text style={s.titleText}>
                 WiFi List
                 </Text>
+                
+            </View>
+            <View style={s.body}>
+                <ScrollView>
+                    {
+                    ssid.map( (item, key) => (
+                        <ExpandableComponent
+                        key = {item.SSID}
+                        item = {item}
+                        />
+                    ))
+                    }
+                </ScrollView>
+            </View>
+            <View style={s.bottom}>
                 <TouchableOpacity
-                onPress= { () => {
-                    setMultiSelect(!multiSelect)
-                    initWifi()
-                }}
-                >
-                <Text style={s.headerButton}>
-                    { multiSelect ?'Less details':'More details'}
-                </Text>
+                    onPress= { () => {
+                        setMultiSelect(!multiSelect)
+                        initWifi()
+                    }}
+                    >
+                    <Text style={s.bottomButton}>
+                        { multiSelect ?'Less details':'More details'}
+                    </Text>
                 </TouchableOpacity>
             </View>
-          <ScrollView>
-            {
-              ssid.map( (item, key) => (
-                <ExpandableComponent
-                  key = {item.SSID}
-                  item = {item}
-                />
-              ))
-            }
-          </ScrollView>
         </View>
       </SafeAreaView>  
     );

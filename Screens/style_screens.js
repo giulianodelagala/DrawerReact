@@ -23,23 +23,26 @@ export default {
     titleText: {
       flex: 2,
       fontSize: 22,
-      color: '#FFDE00',
-      backgroundColor: '#6599FF',
+      color: '#c3e0e5',
+      backgroundColor: '#41729f',
       fontWeight: 'bold',
       textAlign: 'center',
       padding: 30
       
     },
-    headerButton: {
+    bottomButton: {
+        backgroundColor: '#274472',
+        color: '#FFF',
       textAlign: 'center',
       justifyContent: 'center',
       fontSize: 18
     },
     item: {
-      backgroundColor: 'orange',
-      padding: 20
+      backgroundColor: '#c3e0e5',
+      padding: 10,
     },
     itemText: {
+        color: '#41729f',
       fontSize: 18,
       fontWeight: 'bold',
       textAlign: 'center',
