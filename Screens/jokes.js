@@ -23,7 +23,7 @@ export default function JokesScreen() {
             </View>
             <View style={s.body}>
                 <Text style={s.itemText} >
-                {!new_joke?"Loading...":joke.value.joke}             
+                {!new_joke?"Loading...":JSON.stringify(joke.value.joke)}             
                 </Text>
             </View>
             <View style={s.bottom}>
