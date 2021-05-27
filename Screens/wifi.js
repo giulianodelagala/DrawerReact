@@ -1,28 +1,29 @@
 import * as React from 'react';
 import { View, Text, TouchableOpacity, Image, StyleSheet, SafeAreaView} from 'react-native';
+import { Divider } from 'react-native-elements/dist/divider/Divider';
 import { ScrollView } from 'react-native-gesture-handler';
 import WifiManager from "react-native-wifi-reborn";
 
 import s from './style_screens'
 
 const ExpandableComponent = ({item}) => {
-    const [layoutHeight, setLayoutHeight] = React.useState(0);
+    // const [layoutHeight, setLayoutHeight] = React.useState(0);
+    // <View style={{height: layoutHeight, overflow: 'hidden'}} />
     return (
-        <View>
-        <TouchableOpacity style={s.item}>
-            <Text style={s.itemText}>
-            {item.SSID}
-            </Text>
-        </TouchableOpacity>
-        <View
-            style={{height: layoutHeight, overflow: 'hidden'}}
-        />
+        <View style={{flex:1}}>
+            <TouchableOpacity style={s.item}>
+                <Text style={s.itemText}>
+                SSID: {item.SSID}
+                </Text>
+                <Text style={s.itemDetailText}>level: {item.level}, frequency: {item.frequency} </Text>
+            </TouchableOpacity>           
+            <Divider style={{height:2}}></Divider>
         </View>
     );
 }
 
 export default function WiFiScreen() {
-    const [multiSelect, setMultiSelect] = React.useState(false);
+    //const [multiSelect, setMultiSelect] = React.useState(false);
     const [ssid, setSsid] = React.useState([]);
     const initWifi = async () => {
       try {
@@ -30,7 +31,7 @@ export default function WiFiScreen() {
         setSsid(wifi_list);
         console.log(ssid);
       } catch (error) {
-        setSsid('Cannot get current SSID!' + error.message);
+        setSsid([]); //error.message
         console.log('Cannot get current SSID!', {error});
       }  
     }
@@ -49,26 +50,27 @@ export default function WiFiScreen() {
                 
             </View>
             <View style={s.body}>
-                <ScrollView>
-                    {
+                <ScrollView style={{width:'90%',
+                 alignContent:'center'}}>
+                    {ssid!= []?
                     ssid.map( (item, key) => (
                         <ExpandableComponent
                         key = {item.SSID}
                         item = {item}
                         />
-                    ))
+                    )):"Error"
                     }
                 </ScrollView>
             </View>
             <View style={s.bottom}>
                 <TouchableOpacity
                     onPress= { () => {
-                        setMultiSelect(!multiSelect)
+                        //setMultiSelect(!multiSelect)
                         initWifi()
                     }}
                     >
                     <Text style={s.bottomButton}>
-                        { multiSelect ?'Less details':'More details'}
+                        Rescan
                     </Text>
                 </TouchableOpacity>
             </View>

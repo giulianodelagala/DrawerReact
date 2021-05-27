@@ -21,13 +21,17 @@ export default function JokesScreen() {
             <View style={s.header}> 
                 <Text style={s.titleText}>Jokes</Text>
             </View>
-            <View style={s.body}>
-                <Text style={s.itemText} >
-                {!new_joke?"Loading...":JSON.stringify(joke.value.joke)}             
-                </Text>
+            <View style={[s.body]}>
+                <View style={s.jokeContainer}>
+                    <Text style={s.jokeText} >
+                    {!new_joke
+                    ?"Loading..."
+                    : "😁  " + (joke.value.joke).replace(/[&]quot;/g,"\"") + "  🤣"}             
+                    </Text>
+                </View>
             </View>
             <View style={s.bottom}>
-                <TouchableOpacity
+                <TouchableOpacity style={{alignContent:'center'}}
                     onPress= { () => {
                         setNew(false);
                         fetchJoke();
