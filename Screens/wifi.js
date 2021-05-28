@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { View, Text, TouchableOpacity, Image, StyleSheet, SafeAreaView} from 'react-native';
+import { View, Text, TouchableOpacity, SafeAreaView, Alert} from 'react-native';
 import { Divider } from 'react-native-elements/dist/divider/Divider';
 import { ScrollView } from 'react-native-gesture-handler';
 import WifiManager from "react-native-wifi-reborn";
@@ -7,8 +7,6 @@ import WifiManager from "react-native-wifi-reborn";
 import s from './style_screens'
 
 const ExpandableComponent = ({item}) => {
-    // const [layoutHeight, setLayoutHeight] = React.useState(0);
-    // <View style={{height: layoutHeight, overflow: 'hidden'}} />
     return (
         <View style={{flex:1}}>
             <TouchableOpacity style={s.item}>
@@ -23,7 +21,15 @@ const ExpandableComponent = ({item}) => {
 }
 
 export default function WiFiScreen() {
-    //const [multiSelect, setMultiSelect] = React.useState(false);
+    const createTwoButtonAlert = () =>
+        Alert.alert(
+        "GPS Required",
+        "Make sure cellphone GPS is activated",
+        [
+            { text: "OK", onPress: () => console.log("OK Pressed") }
+        ]
+        );
+
     const [ssid, setSsid] = React.useState([]);
     const initWifi = async () => {
       try {
@@ -37,6 +43,7 @@ export default function WiFiScreen() {
     }
   
     React.useEffect(() => {
+        createTwoButtonAlert();
       initWifi();
     }, []);
    
@@ -65,7 +72,6 @@ export default function WiFiScreen() {
             <View style={s.bottom}>
                 <TouchableOpacity
                     onPress= { () => {
-                        //setMultiSelect(!multiSelect)
                         initWifi()
                     }}
                     >

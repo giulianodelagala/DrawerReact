@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { View, Text, TouchableOpacity, Image, StyleSheet, Button} from 'react-native';
+import { View, Text, TouchableOpacity} from 'react-native';
 
 import s from './style_screens'
 
