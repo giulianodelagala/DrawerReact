@@ -35,6 +35,7 @@ export default function LoginScreen(props) {
             <TextInput
               style={s.loginInput}
               placeholder="Type your password"
+              secureTextEntry={true}
             />      
           <TouchableOpacity>
               <Text style={{color: '#000', fontSize: 12}}>Forgot your password?</Text>
